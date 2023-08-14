@@ -7,4 +7,4 @@ patterns:
     $secondNumAlRight = (2/два)
     $thirdNumAlRight = (1/один)
     $fourthNumAlRight = (9/девять)
-    $unNecessaryNum = (4,5,6,7,8,0/четыре/пять/шесть/сесь/восемь/ноль/нуль)
+    $unNecessaryNum = (4/5/6/7/8/0/четыре/пять/шесть/сесь/восемь/ноль/нуль)
