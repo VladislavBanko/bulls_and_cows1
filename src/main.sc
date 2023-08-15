@@ -7,7 +7,7 @@ theme: /
         # Задуманное ботом число - 3219
         q!: $regex</start>
         a: Привет! Давай поиграем в игру "Быки и коровы". Правила следующие: тебе надо написать число из 4 цифр, чтобы попытаться угадать с задуманным мною. Угаданная цифра, находящаяся в той же позиции, что и задуманная мною, даст тебе быка. Угаданная цифра, находящаяся на иной относительно моего числа позиции даст тебе корову. В идеале ты должен получить 4 коровы.
-        a: Не спрашивай, откуда такое название игры, это не моя идея и даже не идея Влада. Напиши число из 4 цифр. **Цифры разделяй пробелами. можешь писать что угодно до и после цифр, главное, между ними должны быть только пробелы**.
+        a: Не спрашивай, откуда такое название игры, это не моя идея и даже не идея Влада. Напиши число из 4 цифр, цифры не должны повторяться. **Цифры разделяй пробелами. можешь писать что угодно до и после цифр, главное, между ними должны быть только пробелы**.
         
         state: NullBullyNullCow
             # Ничего не угадано
@@ -123,7 +123,7 @@ theme: /
             q!: * ($1_slotCorrectNumFromOthPlace) ($unNecessaryNum) ($unNecessaryNum) ($fourthNumAlRight) *
             q!: * ($unNecessaryNum) ($2_slotCorrectNumFromOthPlace) ($unNecessaryNum) ($fourthNumAlRight) *
             q!: * ($unNecessaryNum) ($unNecessaryNum) ($3_slotCorrectNumFromOthPlace) ($fourthNumAlRight) *
-            a: Ты угадал третью цифру. Вместе с ней подъехала ещё одна, правда ты не угадал с её местоположением. А ведь всё так хорошо начиналось((
+            a: Ты угадал четвёртую цифру. Вместе с ней подъехала ещё одна, правда ты не угадал с её местоположением. А ведь всё так хорошо начиналось((
                 
         state: OneBullyTwoCow_first_Num
             # Угадано первое число на месте и два не на месте
@@ -269,11 +269,19 @@ theme: /
             
         state: NullBullyFourCow
             # Угадано три числа не на своём месте
-            q!: * ($1_slotCorrectNumFromOthPlace) ($2_slotCorrectNumFromOthPlace) ($3_slotCorrectNumFromOthPlace) ($4_slotCorrectNumFromOthPlace) *
+            q!: * ($secondNumAlRight) ($firstNumAlRight) ($fourthNumAlRight) ($thirdNumAlRight) *
+            q!: * ($secondNumAlRight) ($thirdNumAlRight) ($fourthNumAlRight) ($firstNumAlRight) *
+            q!: * ($fourthNumAlRight) ($thirdNumAlRight) ($secondNumAlRight) ($firstNumAlRight) *
+            q!: * ($thirdNumAlRight) ($fourthNumAlRight) ($secondNumAlRight) ($firstNumAlRight) *
+            q!: * ($thirdNumAlRight) ($fourthNumAlRight) ($firstNumAlRight) ($secondNumAlRight) *
+            q!: * ($fourthNumAlRight) ($firstNumAlRight) ($secondNumAlRight) ($thirdNumAlRight) *
+            q: * ($secondNumAlRight) ($fourthNumAlRight) ($firstNumAlRight) ($thirdNumAlRight) *
+            q: * ($thirdNumAlRight) ($firstNumAlRight) ($fourthNumAlRight) ($secondNumAlRight) *
+            q: * ($fourthNumAlRight) ($thirdNumAlRight) ($firstNumAlRight) ($secondNumAlRight) *
             random:
                 a: Ну что ж сказать? Ты перепутал все цифры местами) Это уметь надо, так что даже ругать не буду. По утверждению моего бота-коллеги, технически ты можешь потратить до 24 попыток, угадывая нужное число. Всё зависит от того, насколько ты победитель по жизни))
                 a: Всё цифры угадал - поздравляю! Жаль, что они стоят не на своих местах. Так что ты не закончил, давай ещё пытайся))
-        
+                
         state: SameNums
             # Игрок ввёл одинаковые цифры
             q!: * ($sameNums) *
@@ -293,7 +301,7 @@ theme: /
 
     state: Hello
         intent!: /привет
-        a: Привет привет. Напиши число из 4 символов, и я скажу, сколько у тебя коров, а сколько быков.
+        a: Привет привет. Напиши число из 4 символов.
 
     state: Bye
         intent!: /пока
