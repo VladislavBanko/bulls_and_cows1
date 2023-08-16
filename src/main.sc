@@ -18,7 +18,6 @@ theme: /
                 a: Лол. Я знаю больше одной цифры! Меня же два дня делали))
                 a: Смешно)) Но моя фантазия выходит за рамки одной цифры.    
         
-        
         state: NullBullyNullCow
             # Ничего не угадано
             q!: * ($unNecessaryNum) ($unNecessaryNum) ($unNecessaryNum) ($unNecessaryNum) *
